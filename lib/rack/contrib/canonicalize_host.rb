@@ -16,7 +16,7 @@ module Rack
     def call(env)
       req = Rack::Request.new(env)
       if req.host != canonical_host and hosts.include? req.host
-        canonical_url = "#{req.scheme}://#{canonical_host}#{":#{req.port}" unless req.port == '80'}#{req.fullpath}"
+        canonical_url = "#{req.scheme}://#{canonical_host}#{":#{req.port}" unless req.port == 80}#{req.fullpath}"
         [302, {'Content-Type' => 'text/html', 'Location' => canonical_url}, %(Redirecting to <a href="#{canonical_url}">#{canonical_url}</a>...)]
       else
         @app.call(env)
