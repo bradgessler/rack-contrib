@@ -1,6 +1,14 @@
 module Rack
   # Canonicalizes host names to one specific host. This is great for situations where
   # you may want to redirect www.hostname.com to hostname.com.
+  # 
+  # For example:
+  #
+  #    use Rack::CanonicalizeHost, 'www.polleverywhere.com' do
+  #      from 'poll4.com'
+  #      from 'polleverywhere.com'
+  #    end
+  #
   class CanonicalizeHost
     attr_accessor :hosts, :canonical_host
     
